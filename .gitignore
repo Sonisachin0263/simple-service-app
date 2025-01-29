@@ -128,3 +128,31 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Terraform state files
+*.tfstate
+*.tfstate.backup
+
+# Terraform lock file
+.terraform.lock.hcl
+
+# Terraform provider and module caches
+.terraform/
+.terraform.tfstate.lock.info
+
+# Ignore crash logs
+crash.log
+
+# Ignore override files (used for local changes)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore plan files
+*.tfplan
+
+# Ignore environment variables or credentials
+.env
+.terraformrc
+terraform.rc
