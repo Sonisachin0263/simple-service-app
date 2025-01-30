@@ -23,3 +23,13 @@ variable "azs" {
   description = "List of availability zones"
   type        = list(string)
 }
+
+variable "kubernetes_version" {
+  default     = 1.30
+  description = "kubernetes version"
+}
+
+variable "cluster_name"{
+  type  = string
+  description = Name of the Cluster
+}
