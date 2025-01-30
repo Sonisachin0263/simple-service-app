@@ -25,11 +25,11 @@ variable "azs" {
 }
 
 variable "kubernetes_version" {
-  default     = 1.30
+  default     = 1.31
   description = "kubernetes version"
 }
 
 variable "cluster_name"{
   type  = string
-  description = Name of the Cluster
+  description = "Name of the Cluster"
 }
