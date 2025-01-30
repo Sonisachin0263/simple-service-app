@@ -4,9 +4,12 @@ on:
   push:
     branches:
       - main
+  paths:
+      - 'infra/**'
   pull_request:
     branches:
       - main
+  
 
 permissions:
   id-token: write  # Needed for OIDC
