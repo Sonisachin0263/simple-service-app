@@ -30,4 +30,8 @@ module "vpc" {
   private_route_table_tags = {
     Name    = "app-private-rt"
   }
+
+  nat_gateway_tags = {
+    Name = "app-nat-gw"
+  }
 }
