@@ -17,5 +17,5 @@ app.get('/', (req, res) => {
 
 const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`Simple time service is running on ${PORT}`);
+    console.log(`Hey! Simple time service is running on ${PORT}`);
 });
