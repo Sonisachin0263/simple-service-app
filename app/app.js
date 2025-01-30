@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     });
 });
 
-const PORT = 3001;
+const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Simple service is running on ${PORT}`);
 });
