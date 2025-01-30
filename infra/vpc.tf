@@ -13,11 +13,11 @@ module "vpc" {
   single_nat_gateway = true
 
   public_subnet_tags = {
-    for index, az in var.azs : var.pub_sub_cidr[index] => "public-subnet-${index}"
+    Name = "app-subnet-public"
   }
 
   private_subnet_tags = {
-    for index, az in var.azs : var.pvt_sub_cidr[index] => "private-subnet-${index}"
+    Name = "app-subnet-private"
   }
 
   tags = {
