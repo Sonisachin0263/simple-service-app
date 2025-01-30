@@ -5,10 +5,12 @@ on:
     branches:
       - main
     paths:
-        - 'infra/**'
+      - 'infra/**'
   pull_request:
     branches:
       - main
+    paths:
+      - 'infra/**'
   
 
 permissions:
