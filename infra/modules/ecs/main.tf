@@ -29,13 +29,13 @@ resource "aws_ecs_task_definition" "app_td" {
 
 resource "aws_ecs_service" "app" {
   name            = var.service_name
-  cluster         = aws_ecs_cluster.main.id
-  task_definition = aws_ecs_task_definition.app.arn
+  cluster         = aws_ecs_cluster.app_cluster.id
+  task_definition = aws_ecs_task_definition.app_td.arn
   desired_count   = var.desired_count
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets         = module.vpc.private_subnets
+    subnets         = var.private_subnet_ids
     security_groups = [aws_security_group.ecs_tasks.id]
   }
 
