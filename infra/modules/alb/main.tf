@@ -3,12 +3,12 @@ resource "aws_lb" "app_alb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb.id]
-  subnets           = module.vpc.public_subnets
+  subnets           = var.subnets
 }
 
-resource "aws_security_group" "alb" {
+resource "aws_security_group" "alb_sg" {
   name        = "${var.alb_name}-sg"
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port   = 80

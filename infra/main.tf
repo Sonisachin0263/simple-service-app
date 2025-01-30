@@ -12,6 +12,8 @@ module "alb" {
 
   alb_name          = var.alb_name
   container_port    = var.container_port
+  vpc_id = module.vpc.vpc_id
+  subnets = module.vpc.public_subnets
 }
 
 module "ecs" {
