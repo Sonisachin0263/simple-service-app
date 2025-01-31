@@ -10,25 +10,13 @@ resource "aws_ecs_task_definition" "app_td" {
   memory                  = var.task_memory
   execution_role_arn      = aws_iam_role.ecs_task_execution_role.arn
 
-  container_definitions = [
-  {
-    "name": "${service_name}",
-    "image": "${container_image}",
-    "cpu": "${task_cpu}",
-    "memory": "${task_memory}",
-    "essential": true,
-    "runtime_platform": {
-      "operating_system_family": "LINUX",
-      "cpu_architecture": "X86_64"
-    },
-    "portMappings": [
-      {
-        "containerPort": "${container_port}",
-        "protocol": "tcp"
-      }
-    ]
-  }
-]
+  container_definitions = templatefile("${path.module}/container_definitions.json.tpl", {
+    service_name   = var.service_name
+    container_image = var.container_image
+    task_cpu       = var.task_cpu
+    task_memory    = var.task_memory
+    container_port = var.container_port
+  })
 }
 
 resource "aws_ecs_service" "app" {
