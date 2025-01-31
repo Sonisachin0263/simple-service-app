@@ -33,3 +33,7 @@ output "alb_dns_name" {
   value       = module.alb.alb_dns_name
   description = "The DNS name of the load balancer"
 }
+
+output "task_definition_arn" {
+  value = aws_ecs_task_definition.app_td.arn
+}
