@@ -35,5 +35,5 @@ output "alb_dns_name" {
 }
 
 output "task_definition_arn" {
-  value = aws_ecs_task_definition.app_td.arn
+  value = module.ecs.app_td.arn
 }
