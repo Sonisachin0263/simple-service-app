@@ -10,25 +10,25 @@ resource "aws_ecs_task_definition" "app_td" {
   memory                  = var.task_memory
   execution_role_arn      = aws_iam_role.ecs_task_execution_role.arn
 
-  container_definitions = jsonencode([
-    {
-      name      = var.service_name
-      image     = var.container_image
-      cpu       = var.task_cpu
-      memory    = var.task_memory
-      essential = true
-      runtime_platform = {
-        operating_system_family = "LINUX"
-        cpu_architecture        = "X86_64"
+  container_definitions = [
+  {
+    "name": "${service_name}",
+    "image": "${container_image}",
+    "cpu": "${task_cpu}",
+    "memory": "${task_memory}",
+    "essential": true,
+    "runtime_platform": {
+      "operating_system_family": "LINUX",
+      "cpu_architecture": "X86_64"
+    },
+    "portMappings": [
+      {
+        "containerPort": "${container_port}",
+        "protocol": "tcp"
       }
-      portMappings = [
-        {
-          containerPort = var.container_port
-          protocol      = "tcp"
-        }
-      ]
-    }
-  ])
+    ]
+  }
+]
 }
 
 resource "aws_ecs_service" "app" {
