@@ -11,10 +11,15 @@ on:
       - main
     paths:
       - 'infra/**'
+
+env:
+    AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
+    ROLE_SESSION_NAME: ${{ secrets.ROLE_SESSION_NAME }}
+    AWS_REGION: ${{ secrets.AWS_REGION }}
   
 
 permissions:
-  id-token: write  # Needed for OIDC
+  id-token: write  
   contents: read
 
 jobs:
@@ -29,9 +34,9 @@ jobs:
       - name: Configure AWS OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::796973493759:role/gha-role
-          role-session-name: GitHubActionsTerraform
-          aws-region: ap-south-1  # Change to your AWS region
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          role-session-name: ${{ env.ROLE_SESSION_NAME }}
+          aws-region: ${{ env.AWS_REGION }} 
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -41,14 +46,6 @@ jobs:
       - name: Initialize Terraform
         run: terraform init
         working-directory: ./infra
-
-      # - name: Terraform Format Check
-      #   run: terraform fmt -check
-      #   working-directory: ./infra
-
-      # - name: Terraform Validate
-      #   run: terraform validate
-      #   working-directory: ./infra
 
       - name: Terraform Plan
         run: terraform plan -out=tfplan
