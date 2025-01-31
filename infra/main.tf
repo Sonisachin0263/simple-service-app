@@ -35,5 +35,5 @@ output "alb_dns_name" {
 }
 
 output "task_definition_arn" {
-  value = module.ecs.app_td.arn
+  value = module.ecs.task_definition_arn
 }
